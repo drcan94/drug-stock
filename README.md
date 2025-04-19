@@ -1,29 +1,92 @@
-# Create T3 App
+# DrugStock
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+**DrugStock** is a local medicine inventory management tool built with Next.js, React, tRPC, Prisma (SQLite), and NextAuth for authentication.
 
-## What's next? How do I make an app with this?
+## Features
+- Secure, authenticated stock management (add, edit, delete medicines)
+- Search and filter by name, group, brand, or active ingredient
+- Sortable columns with visual chevrons
+- Packs + unit stock model with audit trail (per-pack vs. per-tablet)
+- Low-stock and expired-date highlighting
+- Interactive pagination and adjustable page size (20, 30, 50, 75, 100)
+- Real-time group and overall stock statistics
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+## Tech Stack
+- Next.js 15 (App Router)
+- React 19
+- Tailwind CSS
+- tRPC (React + Server)
+- Prisma ORM + SQLite (development) / any SQL DB in prod
+- NextAuth.js (credentials provider)
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+## Quick Start
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/drug-stock.git
+   cd drug-stock
+   ```
+2. **Install dependencies**
+   ```bash
+   npm install    # or yarn
+   ```
+3. **Configure environment variables**
+   Copy the example file and update:
+   ```bash
+   cp .env.example .env
+   ```
+   ```env
+   # .env
+   AUTH_SECRET=your_nextauth_secret_here
+   DATABASE_URL="file:./dev.db"
+   ```
+4. **Setup the database**
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+   ### Development (with migrations)
+   ```bash
+   # Create initial migration and apply
+   npx prisma migrate dev --name init
+   # Generate the Prisma client
+   npx prisma generate
+   ```
 
-## Learn More
+   ### Production (or quick DB sync)
+   ```bash
+   # Push schema changes without migrations
+   npx prisma db push
+   # Generate the Prisma client
+   npx prisma generate
+   ```
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+   You can also launch **Prisma Studio** to visually inspect/edit data:
+   ```bash
+   npx prisma studio
+   ```
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+5. **Run the application**
+   ```bash
+   npm run dev
+   ```
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+6. **Access the app**
+   - Open http://localhost:3000/ and sign in via the credentials form.
 
-## How do I deploy this?
+## Usage
+- After signing in, navigate to **Stok Yönetimi** to add, edit, delete, and dispense medicines.
+- Use the **Yeni İlaç Ekle** form to specify packs and units as needed.
+- Filter and search by name, group, brand, or active ingredient.
+- Sort columns by clicking headers (with ascending/descending icons).
+- Configure how many items per page and navigate pages.
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+## Environment Variables
+| Name           | Description                                  | Required |
+|----------------|----------------------------------------------|----------|
+| AUTH_SECRET    | Secret for NextAuth.js session signing       | Yes      |
+| DATABASE_URL   | Connection string for Prisma (SQLite file)   | Yes      |
+
+## Contributing
+1. Fork the repo and create a feature branch.
+2. Write code, run lint/tests.
+3. Open a pull request describing your changes.
+
+## License
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
