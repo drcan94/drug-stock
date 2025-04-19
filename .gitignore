@@ -1,0 +1,37 @@
+# Dependency directories
+node_modules/
+
+# Next.js build output
+.next/
+out/
+
+# Production
+build/
+
+# Local env files
+.env
+.env.*
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# macOS
+.DS_Store
+
+# SQLite database files
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+
+# Prisma directories
+prisma/dev.db
+
+# Editor directories and files
+.vscode/
+.idea/
+
+# Package lock file
+package-lock.json
